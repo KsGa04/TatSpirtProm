@@ -13,22 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TatSprirtProm
+namespace TatSprirtProm.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для ManagementOrders.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ManagementOrders : Page
     {
-        public MainWindow()
+        public ManagementOrders()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Pages.AddStorage());
-        }
-
-        private void managementStorage_Click()
-        {
-
         }
     }
 }

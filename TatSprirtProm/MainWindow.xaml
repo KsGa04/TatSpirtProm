@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TatSprirtProm"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="900">
+        mc:Ignorable="d" Icon="pack://application:,,,/Images/icon.jpg"
+        Title="Главное окно" Height="720" Width="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
