@@ -13,12 +13,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
-            <ComboBox x:Name="cbFilter" Width="150" Margin="0,0,10,0" SelectedIndex="0">
-                <ComboBoxItem>Все товары</ComboBoxItem>
-                <ComboBoxItem>В наличии</ComboBoxItem>
-                <ComboBoxItem>Ожидается поставка</ComboBoxItem>
-                <ComboBoxItem>Нет в наличии</ComboBoxItem>
-            </ComboBox>
             <TextBox x:Name="txtSearch" Width="250" Margin="0,0,10,0" Padding="5"/>
             <Button x:Name="btnSearch" Content="Найти" Margin="0,0,10,0" Padding="10,5" />
             <Button x:Name="btnRefresh" Content="Обновить" Margin="0,0,10,0" Padding="10,5" />
@@ -38,12 +32,10 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="{Binding ImageUrl}" Width="100" Height="100" Margin="0,0,10,0" />
+                        <Image Grid.Column="0" Source="{Binding image_product}" Width="100" Height="100" Margin="0,0,10,0" />
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Remains}" FontSize="16" />
-                            <TextBlock Text="{Binding Price}" Foreground="Green" FontSize="14" />
-                            <Button Content="Удалить" FontSize="12" Height="20" Width="60"/>
+                            <TextBlock Text="{Binding name_product}" FontSize="16" FontWeight="Bold" />
+                            <TextBlock Text="{Binding price}" Foreground="Green" FontSize="14" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

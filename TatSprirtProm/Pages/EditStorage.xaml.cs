@@ -20,9 +20,34 @@ namespace TatSprirtProm.Pages
     /// </summary>
     public partial class EditStorage : Page
     {
+        private TatSpirtPromEntities _db = new TatSpirtPromEntities();
+        private byte[] _image = null;
         public EditStorage()
         {
             InitializeComponent();
+            foreach (var d in _db.Users)
+            {
+                cbEmployee.Items.Add(d.fio_user);
+            }
+        }
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            Storage storage = new Storage();
+            storage.address = txtAddress.Text;
+            storage.name_storage = txtName.Text;
+            storage.responsible_person = cbEmployee.SelectedIndex;
+            storage.area = txtArea.Text;
+            _db.SaveChanges();
+
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            txtName.Text = string.Empty;
+            txtAddress.Text = string.Empty;
+            txtArea.Text = string.Empty;
+            cbEmployee.SelectedIndex = 0;
+
         }
     }
 }

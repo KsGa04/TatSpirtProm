@@ -46,8 +46,8 @@
 
         <!-- Область кнопок -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <Button x:Name="btnSave" Content="Сохранить" Margin="0,0,10,0" />
-            <Button x:Name="btnCancel" Content="Отмена" Margin="0,0,10,0" />
+            <Button x:Name="btnSave" Content="Сохранить" Margin="0,0,10,0" Click="btnSave_Click"/>
+            <Button x:Name="btnCancel" Content="Отмена" Margin="0,0,10,0" Click="btnCancel_Click"/>
         </StackPanel>
     </Grid>
 </Page>

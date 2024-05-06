@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace TatSprirtProm.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для ManagementProducts.xaml
+    /// Логика взаимодействия для AboutProduct.xaml
     /// </summary>
-    public partial class ManagementProducts : Page
+    public partial class AboutProduct : Page
     {
-        private TatSpirtPromEntities db = new TatSpirtPromEntities();
-        private List<Product> products = new List<Product>();
-        public ManagementProducts()
+        public AboutProduct()
         {
             InitializeComponent();
-            lvProducts.Items.Clear();
-            products = db.Product.ToList();
-            lvProducts.ItemsSource = products;
         }
     }
 }

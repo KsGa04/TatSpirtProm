@@ -6,13 +6,12 @@
 //     Изменения, вносимые в этот файл вручную, будут перезаписаны при повторном создании кода.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace TatSprirtProm
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
+
     public partial class TatSpirtPromEntities : DbContext
     {
         public TatSpirtPromEntities()

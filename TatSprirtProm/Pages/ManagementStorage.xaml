@@ -16,14 +16,9 @@
 
         <!-- Область поиска и фильтрации -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="txtSearch" Width="200" Margin="0,0,10,0" />
-            <ComboBox x:Name="cbFilter" Width="200" Margin="0,0,10,0" 
-                      >
-                <ComboBoxItem>Все</ComboBoxItem>
-                <ComboBoxItem>Активные</ComboBoxItem>
-                <ComboBoxItem>Неактивные</ComboBoxItem>
-            </ComboBox>
+            <TextBlock Text="Управление складами" FontSize="20" Margin="0,0,30,0"/>
             <Button Content="Добавить" Margin="0,0,10,0" />
+            <Button Content="Изменить" Margin="0,0,10,0" />
             <Button Content="Удалить" Margin="0,0,10,0" />
         </StackPanel>
 
@@ -48,9 +43,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
-            <Button x:Name="btnSave" Content="Сохранить"  Margin="0,0,10,0" />
-            <Button x:Name="btnCancel" Content="Отмена" Margin="0,0,10,0" />
-        </StackPanel>
     </Grid>
 </Page>

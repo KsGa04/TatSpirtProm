@@ -23,6 +23,16 @@ namespace TatSprirtProm.Pages
         public ManagementStorage()
         {
             InitializeComponent();
+            ListViewLoad();
+        }
+        public void ListViewLoad()
+        {
+            using (TatSpirtPromEntities db = new TatSpirtPromEntities())
+            {
+                var meals = db.Storage.ToList();
+
+                lvWarehouses.ItemsSource = meals;
+            }
         }
     }
 }
