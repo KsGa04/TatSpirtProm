@@ -7,7 +7,29 @@
       mc:Ignorable="d" 
       Height="680" Width="700"
       Title="AboutProduct">
-    <Grid>
-        
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Информация о напитке" FontSize="20" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+        <Image Width="200" Height="200" Grid.ColumnSpan="2" Grid.Row="1" Margin="10"/>
+        <TextBlock Text="Название" Grid.Row="2" FontSize="15" HorizontalAlignment="Center"/>
+        <TextBlock Text="Описание" Grid.Row="3" FontSize="15" HorizontalAlignment="Center"/>
+        <TextBlock Text="Цена" Grid.Row="4" FontSize="15" HorizontalAlignment="Center"/>
+        <TextBlock Text="Объём" Grid.Row="5" FontSize="15" HorizontalAlignment="Center"/>
+
+        <TextBlock x:Name="name" FontSize="15" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200"/>
+        <TextBlock x:Name="description"  FontSize="15" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="100"/>
+        <TextBlock x:Name="price" FontSize="15" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Width="200"/>
+        <TextBlock x:Name="amount" FontSize="15" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Width="200"/>
     </Grid>
 </Page>

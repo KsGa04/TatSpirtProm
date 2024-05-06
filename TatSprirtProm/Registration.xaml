@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TatSprirtProm"
         mc:Ignorable="d"
-        Title="Registration" Height="450" Width="800">
-    <Grid>
+        Title="Регистрация" Height="300" Width="400">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Регистрация" FontSize="18" HorizontalAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Логин:" Margin="0,10,10,0" />
+        <TextBox x:Name="txtLogin" Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" />
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Пароль:" Margin="0,10,10,0" />
+        <PasswordBox x:Name="txtPassword" Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" />
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Организация:" Margin="0,10,10,0" />
+        <TextBox x:Name="txtName" Grid.Row="3" Grid.Column="1" Margin="0,10,0,0" />
         
+        <Button x:Name="btnLogin" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Content="Войти" Margin="0,20,0,0"/>
     </Grid>
 </Window>
