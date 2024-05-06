@@ -28,7 +28,7 @@
         </StackPanel>
 
         <!-- Список складских помещений -->
-        <ListView x:Name="lvWarehouses" Grid.Row="1" Margin="10,10,0,10" 
+        <ListView x:Name="lvWarehouses" Grid.Row="1" Margin="10,10,10,10" 
                   ItemsSource="{Binding Warehouses}" SelectedItem="{Binding SelectedWarehouse}">
             <ListView.View>
                 <GridView>

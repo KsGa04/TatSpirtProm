@@ -26,9 +26,27 @@ namespace TatSprirtProm
             MainFrame.Navigate(new Pages.AddStorage());
         }
 
-        private void managementStorage_Click()
+        private void managementStorage_Click(object sender, RoutedEventArgs e)
         {
+            MainFrame.Navigate(new Pages.ManagementStorage());
+        }
 
+        private void managementProduct_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.ManagementProducts());
+        }
+
+        private void catalog_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void delivery_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.Delivery());
+        }
+
+        private void managementOrders_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
