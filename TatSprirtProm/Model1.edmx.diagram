@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="91834a10e1f84dd883344d85f75343e9" Name="Diagram1">
+        <EntityTypeShape EntityType="TatSpirtPromModel.Category" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TatSpirtPromModel.Delivery" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TatSpirtPromModel.Orders" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TatSpirtPromModel.Organization" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TatSpirtPromModel.Product" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TatSpirtPromModel.Role" Width="1.5" PointX="3.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TatSpirtPromModel.Storage" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TatSpirtPromModel.Storage_product" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="TatSpirtPromModel.Users" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="TatSpirtPromModel.FK__Product__id_cate__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="TatSpirtPromModel.FK__Delivery__id_pro__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="TatSpirtPromModel.FK__Delivery__id_sto__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="TatSpirtPromModel.FK__Orders__id_organ__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="TatSpirtPromModel.FK__Orders__id_produ__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="TatSpirtPromModel.FK__Organizat__id_ro__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="TatSpirtPromModel.FK__Storage_p__id_pr__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="TatSpirtPromModel.FK__Storage__respons__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="TatSpirtPromModel.FK__Storage_p__id_st__4E88ABD4" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
