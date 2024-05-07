@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TatSpirtPromModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id_category" />
+          </Key>
+          <Property Name="id_category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_category" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="id_delivery" />
+          </Key>
+          <Property Name="id_delivery" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="data_delivery" Type="date" Nullable="false" />
+          <Property Name="id_product" Type="int" />
+          <Property Name="id_storage" Type="int" />
+          <Property Name="count" Type="int" />
+          <Property Name="comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="id_order" />
+          </Key>
+          <Property Name="id_order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="data_order" Type="date" Nullable="false" />
+          <Property Name="id_product" Type="int" />
+          <Property Name="count" Type="int" />
+          <Property Name="total_price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="comment" Type="nvarchar(max)" />
+          <Property Name="id_organization" Type="int" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="id_organization" />
+          </Key>
+          <Property Name="id_organization" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_organization" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="id_role" Type="int" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id_product" />
+          </Key>
+          <Property Name="id_product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_product" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="image_product" Type="image" />
+          <Property Name="description_product" Type="nvarchar(max)" />
+          <Property Name="id_category" Type="int" />
+          <Property Name="amount" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_role" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="id_storage" />
+          </Key>
+          <Property Name="id_storage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_storage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="area" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="responsible_person" Type="int" />
+        </EntityType>
+        <EntityType Name="Storage_product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_storage" Type="int" />
+          <Property Name="id_product" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fio_user" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Delivery__id_pro__46E78A0C">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Delivery__id_sto__47DBAE45">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="id_storage" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="id_storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__id_organ__48CFD27E">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="id_organization" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_organization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__id_produ__49C3F6B7">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__id_ro__4AB81AF0">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__id_cate__4BAC3F29">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id_category" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="id_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Storage__respons__4CA06362">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Storage" Type="Self.Storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Storage">
+              <PropertyRef Name="responsible_person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Storage_p__id_pr__4D94879B">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Storage_product" Type="Self.Storage_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="Storage_product">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Storage_p__id_st__4E88ABD4">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Storage_product" Type="Self.Storage_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="id_storage" />
+            </Principal>
+            <Dependent Role="Storage_product">
+              <PropertyRef Name="id_storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TatSpirtPromModelContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Storage" EntityType="Self.Storage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Storage_product" EntityType="Self.Storage_product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Delivery__id_pro__46E78A0C" Association="Self.FK__Delivery__id_pro__46E78A0C">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Delivery__id_sto__47DBAE45" Association="Self.FK__Delivery__id_sto__47DBAE45">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__id_organ__48CFD27E" Association="Self.FK__Orders__id_organ__48CFD27E">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__id_produ__49C3F6B7" Association="Self.FK__Orders__id_produ__49C3F6B7">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__id_ro__4AB81AF0" Association="Self.FK__Organizat__id_ro__4AB81AF0">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__id_cate__4BAC3F29" Association="Self.FK__Product__id_cate__4BAC3F29">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Storage__respons__4CA06362" Association="Self.FK__Storage__respons__4CA06362">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Storage" EntitySet="Storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Storage_p__id_pr__4D94879B" Association="Self.FK__Storage_p__id_pr__4D94879B">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Storage_product" EntitySet="Storage_product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Storage_p__id_st__4E88ABD4" Association="Self.FK__Storage_p__id_st__4E88ABD4">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Storage_product" EntitySet="Storage_product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TatSpirtPromModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id_category" />
+          </Key>
+          <Property Name="id_category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Product__id_cate__4BAC3F29" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="id_delivery" />
+          </Key>
+          <Property Name="id_delivery" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="data_delivery" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_product" Type="Int32" />
+          <Property Name="id_storage" Type="Int32" />
+          <Property Name="count" Type="Int32" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Delivery__id_pro__46E78A0C" FromRole="Delivery" ToRole="Product" />
+          <NavigationProperty Name="Storage" Relationship="Self.FK__Delivery__id_sto__47DBAE45" FromRole="Delivery" ToRole="Storage" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="id_order" />
+          </Key>
+          <Property Name="id_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="data_order" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_product" Type="Int32" />
+          <Property Name="count" Type="Int32" />
+          <Property Name="total_price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_organization" Type="Int32" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Orders__id_organ__48CFD27E" FromRole="Orders" ToRole="Organization" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Orders__id_produ__49C3F6B7" FromRole="Orders" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="id_organization" />
+          </Key>
+          <Property Name="id_organization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_organization" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_role" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__id_organ__48CFD27E" FromRole="Organization" ToRole="Orders" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__Organizat__id_ro__4AB81AF0" FromRole="Organization" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id_product" />
+          </Key>
+          <Property Name="id_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image_product" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="description_product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_category" Type="Int32" />
+          <Property Name="amount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Product__id_cate__4BAC3F29" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Delivery" Relationship="Self.FK__Delivery__id_pro__46E78A0C" FromRole="Product" ToRole="Delivery" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__id_produ__49C3F6B7" FromRole="Product" ToRole="Orders" />
+          <NavigationProperty Name="Storage_product" Relationship="Self.FK__Storage_p__id_pr__4D94879B" FromRole="Product" ToRole="Storage_product" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_role" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Organizat__id_ro__4AB81AF0" FromRole="Role" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="id_storage" />
+          </Key>
+          <Property Name="id_storage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_storage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="area" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="responsible_person" Type="Int32" />
+          <NavigationProperty Name="Delivery" Relationship="Self.FK__Delivery__id_sto__47DBAE45" FromRole="Storage" ToRole="Delivery" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Storage__respons__4CA06362" FromRole="Storage" ToRole="Users" />
+          <NavigationProperty Name="Storage_product" Relationship="Self.FK__Storage_p__id_st__4E88ABD4" FromRole="Storage" ToRole="Storage_product" />
+        </EntityType>
+        <EntityType Name="Storage_product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_storage" Type="Int32" />
+          <Property Name="id_product" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Storage_p__id_pr__4D94879B" FromRole="Storage_product" ToRole="Product" />
+          <NavigationProperty Name="Storage" Relationship="Self.FK__Storage_p__id_st__4E88ABD4" FromRole="Storage_product" ToRole="Storage" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fio_user" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Storage" Relationship="Self.FK__Storage__respons__4CA06362" FromRole="Users" ToRole="Storage" />
+        </EntityType>
+        <Association Name="FK__Product__id_cate__4BAC3F29">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id_category" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="id_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Delivery__id_pro__46E78A0C">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Delivery__id_sto__47DBAE45">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="id_storage" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="id_storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__id_organ__48CFD27E">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="id_organization" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_organization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__id_produ__49C3F6B7">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__id_ro__4AB81AF0">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Storage_p__id_pr__4D94879B">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Storage_product" Type="Self.Storage_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="Storage_product">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Storage__respons__4CA06362">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Storage" Type="Self.Storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Storage">
+              <PropertyRef Name="responsible_person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Storage_p__id_st__4E88ABD4">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Storage_product" Type="Self.Storage_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="id_storage" />
+            </Principal>
+            <Dependent Role="Storage_product">
+              <PropertyRef Name="id_storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TatSpirtPromEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Delivery" EntityType="Self.Delivery" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Storage" EntityType="Self.Storage" />
+          <EntitySet Name="Storage_product" EntityType="Self.Storage_product" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Product__id_cate__4BAC3F29" Association="Self.FK__Product__id_cate__4BAC3F29">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Delivery__id_pro__46E78A0C" Association="Self.FK__Delivery__id_pro__46E78A0C">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Delivery__id_sto__47DBAE45" Association="Self.FK__Delivery__id_sto__47DBAE45">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__id_organ__48CFD27E" Association="Self.FK__Orders__id_organ__48CFD27E">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__id_produ__49C3F6B7" Association="Self.FK__Orders__id_produ__49C3F6B7">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__id_ro__4AB81AF0" Association="Self.FK__Organizat__id_ro__4AB81AF0">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Storage_p__id_pr__4D94879B" Association="Self.FK__Storage_p__id_pr__4D94879B">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Storage_product" EntitySet="Storage_product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Storage__respons__4CA06362" Association="Self.FK__Storage__respons__4CA06362">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Storage" EntitySet="Storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Storage_p__id_st__4E88ABD4" Association="Self.FK__Storage_p__id_st__4E88ABD4">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Storage_product" EntitySet="Storage_product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TatSpirtPromModelContainer" CdmEntityContainer="TatSpirtPromEntities">
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="TatSpirtPromModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="id_category" ColumnName="id_category" />
+                <ScalarProperty Name="name_category" ColumnName="name_category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Delivery">
+            <EntityTypeMapping TypeName="TatSpirtPromModel.Delivery">
+              <MappingFragment StoreEntitySet="Delivery">
+                <ScalarProperty Name="id_delivery" ColumnName="id_delivery" />
+                <ScalarProperty Name="data_delivery" ColumnName="data_delivery" />
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="id_storage" ColumnName="id_storage" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="TatSpirtPromModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="id_order" ColumnName="id_order" />
+                <ScalarProperty Name="data_order" ColumnName="data_order" />
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="id_organization" ColumnName="id_organization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organization">
+            <EntityTypeMapping TypeName="TatSpirtPromModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="id_organization" ColumnName="id_organization" />
+                <ScalarProperty Name="name_organization" ColumnName="name_organization" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="TatSpirtPromModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="name_product" ColumnName="name_product" />
+                <ScalarProperty Name="image_product" ColumnName="image_product" />
+                <ScalarProperty Name="description_product" ColumnName="description_product" />
+                <ScalarProperty Name="id_category" ColumnName="id_category" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="TatSpirtPromModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="name_role" ColumnName="name_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Storage">
+            <EntityTypeMapping TypeName="TatSpirtPromModel.Storage">
+              <MappingFragment StoreEntitySet="Storage">
+                <ScalarProperty Name="id_storage" ColumnName="id_storage" />
+                <ScalarProperty Name="name_storage" ColumnName="name_storage" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="responsible_person" ColumnName="responsible_person" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Storage_product">
+            <EntityTypeMapping TypeName="TatSpirtPromModel.Storage_product">
+              <MappingFragment StoreEntitySet="Storage_product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_storage" ColumnName="id_storage" />
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TatSpirtPromModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="fio_user" ColumnName="fio_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
