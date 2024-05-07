@@ -25,9 +25,18 @@ namespace TatSprirtProm.Pages
     {
         private TatSpirtPromEntities _db = new TatSpirtPromEntities();
         private byte[] _image = null;
-        public EditProduct()
+        public EditProduct(int id)
         {
             InitializeComponent();
+            Product product = _db.Product.Where(x => x.id_product == id).FirstOrDefault();
+            txtName.Text = product.name_product;
+            txtPrice.Text = product.price.ToString();
+            txtDescription.Text = product.description_product;
+            txtAmount.Text = product.amount.ToString();
+            cbCategory.SelectedIndex = product.id_product;
+            _image = product.image_product;
+            MemoryStream ms = new MemoryStream(_image);
+            imgProduct.Source = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
             foreach (var d in _db.Category)
             {
                 cbCategory.Items.Add(d.name_category);

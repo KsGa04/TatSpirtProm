@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Class;
 
 namespace TatSprirtProm
 {
@@ -23,7 +24,21 @@ namespace TatSprirtProm
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Pages.AddStorage());
+            if (Auth.Role == "Организация")
+            {
+                managementProduct.Visibility = Visibility.Collapsed;
+                storage.Visibility = Visibility.Collapsed;
+                managementOrders.Visibility = Visibility.Collapsed;
+                delivery.Visibility = Visibility.Collapsed;
+                orders.Visibility = Visibility.Collapsed;
+                button_storage.Visibility = Visibility.Collapsed;
+            }
+            if (Auth.Role == "Администратор")
+            {
+                new_order.Visibility = Visibility.Collapsed;
+                catalog.Visibility = Visibility.Collapsed;
+            }
+            MainFrame.Navigate(new Pages.ManagementProducts());
         }
 
         private void managementStorage_Click(object sender, RoutedEventArgs e)
@@ -38,6 +53,7 @@ namespace TatSprirtProm
 
         private void catalog_Click(object sender, RoutedEventArgs e)
         {
+            MainFrame.Navigate(new Pages.ManagementProducts());
         }
 
         private void delivery_Click(object sender, RoutedEventArgs e)
@@ -47,6 +63,21 @@ namespace TatSprirtProm
 
         private void managementOrders_Click(object sender, RoutedEventArgs e)
         {
+            if (Auth.Role == "Организация")
+            {
+                MainFrame.Navigate (new Pages.NewOrder());
+            }
+            if (Auth.Role == "Администратор")
+            {
+                MainFrame.Navigate(new Pages.ManagementOrders());
+            }
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Authorization authorization = new Authorization();
+            authorization.Show();
+            this.Hide();
         }
     }
 }

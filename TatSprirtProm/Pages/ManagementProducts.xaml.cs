@@ -29,5 +29,15 @@ namespace TatSprirtProm.Pages
             products = db.Product.ToList();
             lvProducts.ItemsSource = products;
         }
+
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ListViewItem item)
+            {
+                var product = item.Content as Product;
+                int id = product.id_product;
+                NavigationService.Navigate(new Pages.AboutProduct(id));
+            }
+        }
     }
 }

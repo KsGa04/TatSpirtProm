@@ -17,9 +17,7 @@
         <!-- Область поиска и фильтрации -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
             <TextBlock Text="Управление складами" FontSize="20" Margin="0,0,30,0"/>
-            <Button Content="Добавить" Margin="0,0,10,0" />
-            <Button Content="Изменить" Margin="0,0,10,0" />
-            <Button Content="Удалить" Margin="0,0,10,0" />
+            <Button Content="Добавить" Margin="0,0,10,0" x:Name="add" Click="add_Click"/>
         </StackPanel>
 
         <!-- Список складских помещений -->
@@ -34,8 +32,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Content="Редактировать" Margin="0,0,10,0" />
-                                    <Button Content="Удалить" Margin="0,0,10,0" />
+                                    <Button Content="Редактировать" Margin="0,0,10,0" x:Name="edit" Click="edit_Click"/>
+                                    <Button Content="Удалить" Margin="0,0,10,0" x:Name="delete" Click="delete_Click"/>
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

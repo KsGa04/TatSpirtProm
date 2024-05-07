@@ -15,15 +15,16 @@
         <!-- Верхняя панель с меню и инструментами -->
         <DockPanel Grid.Row="0" Background="#FF2196F3">
             <Menu DockPanel.Dock="Top" FontSize="16" Foreground="Black">
-                <MenuItem Header="Склад">
-                    <MenuItem Header="Управление складами" Click="managementStorage_Click" x:Name="managementStorage"/>
-                </MenuItem>
                 <MenuItem Header="Товары">
                     <MenuItem Header="Управление товарами" Click="managementProduct_Click" x:Name="managementProduct"/>
                     <MenuItem Header="Каталог товаров" Click="catalog_Click" x:Name="catalog"/>
                     <MenuItem Header="Поставки" x:Name="delivery" Click="delivery_Click"/>
+                    <MenuItem Header="Заказ" x:Name="new_order" Click="managementOrders_Click"/>
                 </MenuItem>
-                <MenuItem Header="Заказы">
+                <MenuItem Header="Склад" x:Name="storage">
+                    <MenuItem Header="Управление складами" Click="managementStorage_Click" x:Name="managementStorage"/>
+                </MenuItem>
+                <MenuItem Header="Заказы" x:Name="orders">
                     <MenuItem Header="Управление заказами" x:Name="managementOrders" Click="managementOrders_Click"/>
                 </MenuItem>
             </Menu>
@@ -38,9 +39,10 @@
 
             <!-- Левая панель с навигацией -->
             <StackPanel Grid.Column="0" Background="#FFE0E0E0" >
-                <Button Content="Склад" Margin="5" Padding="10,5" Click="managementStorage_Click" Width="120" Height="30"/>
                 <Button Content="Товары" Margin="5" Padding="10,5" Click="managementProduct_Click" Width="120" Height="30"/>
-                <Button Content="Заказы" Margin="5" Padding="10,5" Click="managementOrders_Click" Width="120" Height="30"/>
+                <Button Content="Склад" Margin="5" Padding="10,5" Click="managementStorage_Click" Width="120" Height="30" x:Name="button_storage"/>
+                <Button Content="Заказы" Margin="5" Padding="10,5" Click="managementOrders_Click" Width="120" Height="30" x:Name="button_order"/>
+                <Button Content="Выход" Margin="5" Padding="10,5" Width="120" x:Name="Exit" Click="Exit_Click" Height="30"/>
             </StackPanel>
 
             <!-- Основная область для отображения содержимого -->

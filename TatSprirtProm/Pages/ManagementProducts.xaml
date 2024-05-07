@@ -15,7 +15,6 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
             <TextBox x:Name="txtSearch" Width="250" Margin="0,0,10,0" Padding="5"/>
             <Button x:Name="btnSearch" Content="Найти" Margin="0,0,10,0" Padding="10,5" />
-            <Button x:Name="btnRefresh" Content="Обновить" Margin="0,0,10,0" Padding="10,5" />
         </StackPanel>
         <ListView x:Name="lvProducts" Grid.Row="1" Margin="0,10,0,0" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" d:ItemsSource="{d:SampleData ItemCount=10}">
             <ListView.ItemsPanel>
@@ -40,6 +39,11 @@
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
     </Grid>
 </Page>

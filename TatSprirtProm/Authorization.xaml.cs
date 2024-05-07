@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WpfApp1.Class;
 
 namespace TatSprirtProm
 {
@@ -22,6 +13,36 @@ namespace TatSprirtProm
         public Authorization()
         {
             InitializeComponent();
+            DataContext = this;
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Organization auth = TatSpirtPromEntities.GetContext().Organization.FirstOrDefault(u => u.login == txtLogin.Text && u.password == txtPassword.Password);
+                if (auth != null)
+                {
+
+                    Auth.IsAuth = true;
+                    Auth.Role = auth.Role.name_role;
+
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Неправильные данные, пожалуйста, попробуйте еще раз");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TatSprirtProm.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Catalog.xaml
+    /// Логика взаимодействия для NewDelivery.xaml
     /// </summary>
-    public partial class Catalog : Page
+    public partial class NewDelivery : Page
     {
-        public Catalog()
+        public NewDelivery()
         {
             InitializeComponent();
         }

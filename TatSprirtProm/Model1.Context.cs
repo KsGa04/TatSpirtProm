@@ -23,7 +23,9 @@ namespace TatSprirtProm
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+        public static TatSpirtPromEntities _context;
+        public static TatSpirtPromEntities GetContext() => _context ?? (_context = new TatSpirtPromEntities());
+
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Delivery> Delivery { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }

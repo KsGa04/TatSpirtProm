@@ -22,9 +22,15 @@ namespace TatSprirtProm.Pages
     {
         private TatSpirtPromEntities _db = new TatSpirtPromEntities();
         private byte[] _image = null;
-        public EditStorage()
+        public EditStorage(int id)
         {
             InitializeComponent();
+            Storage storage =  _db.Storage.Where(x => x.id_storage == id).FirstOrDefault();
+            txtName.Text = storage.name_storage;
+            txtArea.Text = storage.area.ToString();
+            txtAddress.Text = storage.address.ToString();
+            cbEmployee.SelectedIndex = (int)storage.responsible_person;
+
             foreach (var d in _db.Users)
             {
                 cbEmployee.Items.Add(d.fio_user);
