@@ -43,7 +43,6 @@ namespace TatSprirtProm.Pages
             image.Source = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
             name.Text = product.name_product;
             description.Text = product.description_product;
-            price.Text = product.price.ToString();
             amount.Text = product.amount.ToString();
         }
 

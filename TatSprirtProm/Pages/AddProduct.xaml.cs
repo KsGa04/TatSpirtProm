@@ -48,8 +48,7 @@ namespace TatSprirtProm.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Product product = new Product();
-            product.price = Convert.ToDecimal( txtPrice.Text);
+            Product product = new Product();;
             product.description_product = txtDescription.Text;
             product.name_product = txtName.Text;
             product.id_category = cbCategory.SelectedIndex;
