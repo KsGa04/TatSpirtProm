@@ -48,23 +48,27 @@ namespace TatSprirtProm.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Product product = new Product();;
+            Product product = new Product();
             product.description_product = txtDescription.Text;
             product.name_product = txtName.Text;
-            product.id_category = cbCategory.SelectedIndex;
+            product.id_category = cbCategory.SelectedIndex + 1;
             product.amount = txtAmount.Text;
+            product.image_product = _image;
             _db.Product.Add(product);
             _db.SaveChanges();
+            MessageBox.Show("Товар добавлен");
+            NavigationService.GoBack();
+
 
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             txtName.Text = string.Empty;
-            txtPrice.Text = string.Empty;
             txtDescription.Text = string.Empty;
-            cbCategory.SelectedIndex = 0;
+            cbCategory.SelectedIndex = -1;
             txtAmount.Text = string.Empty;
+            imgProduct.Source = null;
 
         }
     }

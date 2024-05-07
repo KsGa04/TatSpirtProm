@@ -38,6 +38,7 @@ namespace TatSprirtProm.Pages
             storage.area = txtArea.Text;
             _db.Storage.Add(storage);
             _db.SaveChanges();
+            MessageBox.Show("Склад добавлен");
 
         }
 
@@ -46,7 +47,7 @@ namespace TatSprirtProm.Pages
             txtName.Text = string.Empty;
             txtAddress.Text = string.Empty;
             txtArea.Text = string.Empty;
-            cbEmployee.SelectedIndex = 0;
+            cbEmployee.SelectedIndex = -1;
 
         }
     }

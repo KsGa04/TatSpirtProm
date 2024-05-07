@@ -26,6 +26,7 @@ namespace TatSprirtProm
 
                     Auth.IsAuth = true;
                     Auth.Role = auth.Role.name_role;
+                    Auth.UserID = auth.id_organization;
 
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
@@ -43,6 +44,13 @@ namespace TatSprirtProm
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void reg_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Registration registration = new Registration();
+            registration.Show();
+            this.Hide();
         }
     }
 }

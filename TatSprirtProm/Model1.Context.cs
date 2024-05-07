@@ -19,7 +19,8 @@ namespace TatSprirtProm
             : base("name=TatSpirtPromEntities")
         {
         }
-    
+        public static TatSpirtPromEntities _context;
+        public static TatSpirtPromEntities GetContext() => _context ?? (_context = new TatSpirtPromEntities());
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

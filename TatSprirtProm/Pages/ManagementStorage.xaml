@@ -25,9 +25,9 @@
                   ItemsSource="{Binding Warehouses}" SelectedItem="{Binding SelectedWarehouse}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="150"/>
-                    <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding Address}" Width="200"/>
-                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Status}" Width="50"/>
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding name_storage}" Width="150"/>
+                    <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding address}" Width="200"/>
+                    <GridViewColumn Header="Площадь" DisplayMemberBinding="{Binding area}" Width="50"/>
                     <GridViewColumn Header="Действия" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

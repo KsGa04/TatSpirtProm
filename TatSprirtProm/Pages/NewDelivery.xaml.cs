@@ -24,7 +24,6 @@ namespace TatSprirtProm.Pages
         public NewDelivery()
         {
             InitializeComponent();
-            txtPrice.IsEnabled = false;
             foreach (var d in db.Product)
             {
                 cbSupplier.Items.Add(d.name_product);
@@ -40,12 +39,18 @@ namespace TatSprirtProm.Pages
             Delivery delivery = new Delivery();
             delivery.data_delivery = (DateTime)dpDeliveryDate.SelectedDate;
             delivery.comment = txtComment.Text;
-            delivery.total_price = Convert.ToDecimal(txtPrice.Text);
             delivery.count = Convert.ToInt32(txtQuantity.Text);
             delivery.id_storage = cbWarehouse.SelectedIndex;
             delivery.id_product = cbSupplier.SelectedIndex;
             db.Delivery.Add(delivery);
+
+            Storage_product storage_Product = new Storage_product();
+            storage_Product.id_product = cbSupplier.SelectedIndex;
+            storage_Product.id_storage = cbWarehouse.SelectedIndex;
+            db.Storage_product.Add(storage_Product);
             db.SaveChanges();
+            MessageBox.Show("Поставка создана");
+            NavigationService.GoBack();
         }
     }
 }

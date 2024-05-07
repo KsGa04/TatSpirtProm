@@ -58,7 +58,7 @@ namespace TatSprirtProm
 
         private void delivery_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Pages.Delivery());
+            MainFrame.Navigate(new Pages.NewDelivery());
         }
 
         private void managementOrders_Click(object sender, RoutedEventArgs e)

@@ -14,41 +14,21 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- Область поиска и фильтрации -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="txtSearch" Width="200" Margin="0,0,10,0" />
-            <ComboBox x:Name="cbFilter" Width="200" Margin="0,0,10,0" 
-                      >
-                <ComboBoxItem>Все</ComboBoxItem>
-                <ComboBoxItem>Активные</ComboBoxItem>
-                <ComboBoxItem>Неактивные</ComboBoxItem>
-            </ComboBox>
-        </StackPanel>
+            <TextBlock Text="Просмотр заказов" FontSize="22" Width="200" Margin="0,0,10,0" />
 
-        <!-- Список складских помещений -->
+        </StackPanel>
         <ListView x:Name="lvWarehouses" Grid.Row="1" Margin="10" 
                   ItemsSource="{Binding Warehouses}" SelectedItem="{Binding SelectedWarehouse}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="150"/>
-                    <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding Address}" Width="200"/>
-                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Status}" Width="50"/>
-                    <GridViewColumn Header="Действия" Width="250">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="Редактировать" Margin="0,0,10,0" />
-                                    <Button Content="Удалить" Margin="0,0,10,0" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <GridViewColumn Header="Напиток" DisplayMemberBinding="{Binding name_product}" Width="250"/>
+                    <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding comment}" Width="250"/>
+                    <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding count}" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
-            <Button x:Name="btnSave" Content="Сохранить"  Margin="0,0,10,0" />
-            <Button x:Name="btnCancel" Content="Отмена" Margin="0,0,10,0" />
         </StackPanel>
     </Grid>
 </Page>

@@ -25,18 +25,26 @@ namespace TatSprirtProm.Pages
     {
         private TatSpirtPromEntities _db = new TatSpirtPromEntities();
         private byte[] _image = null;
+        int _id;
         public EditProduct(int id)
         {
             InitializeComponent();
+            _id = id;
             Product product = _db.Product.Where(x => x.id_product == id).FirstOrDefault();
             txtName.Text = product.name_product;
-            txtPrice.Text = product.price.ToString();
             txtDescription.Text = product.description_product;
             txtAmount.Text = product.amount.ToString();
-            cbCategory.SelectedIndex = product.id_product;
+            cbCategory.SelectedIndex = (int)(product.id_category - 1);
             _image = product.image_product;
-            MemoryStream ms = new MemoryStream(_image);
-            imgProduct.Source = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+            if (_image == null)
+            {
+                imgProduct.Source = null;
+            }
+            else
+            {
+                MemoryStream ms = new MemoryStream(_image);
+                imgProduct.Source = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+            }
             foreach (var d in _db.Category)
             {
                 cbCategory.Items.Add(d.name_category);
@@ -57,23 +65,21 @@ namespace TatSprirtProm.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Product product = new Product();
-            product.price = Convert.ToDecimal(txtPrice.Text);
+            Product product =  _db.Product.Where(x => x.id_product == _id).FirstOrDefault();
             product.description_product = txtDescription.Text;
             product.name_product = txtName.Text;
-            product.id_category = cbCategory.SelectedIndex;
+            product.id_category = cbCategory.SelectedIndex + 1;
             product.amount = txtAmount.Text;
+            product.image_product = _image;
             _db.SaveChanges();
+            MessageBox.Show("Товар изменен");
+            NavigationService.GoBack();
 
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            txtName.Text = string.Empty;
-            txtPrice.Text = string.Empty;
-            txtDescription.Text = string.Empty;
-            cbCategory.SelectedIndex = 0;
-            txtAmount.Text = string.Empty;
+            NavigationService.GoBack();
 
         }
     }

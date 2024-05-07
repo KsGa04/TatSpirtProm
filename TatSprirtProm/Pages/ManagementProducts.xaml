@@ -14,7 +14,9 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
             <TextBox x:Name="txtSearch" Width="250" Margin="0,0,10,0" Padding="5"/>
-            <Button x:Name="btnSearch" Content="Найти" Margin="0,0,10,0" Padding="10,5" />
+            <Button x:Name="btnSearch" Content="Найти" Margin="0,0,10,0" Padding="10,5" Click="btnSearch_Click" />
+            <Button x:Name="Update" Content="Обновить" Margin="0,0,10,0" Padding="10,5" Click="Update_Click"/>
+            <Button x:Name="add" Content="Добавить" Margin="0,0,10,0" Padding="10,5" Click="add_Click"/>
         </StackPanel>
         <ListView x:Name="lvProducts" Grid.Row="1" Margin="0,10,0,0" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" d:ItemsSource="{d:SampleData ItemCount=10}">
             <ListView.ItemsPanel>
@@ -33,8 +35,8 @@
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" Source="{Binding image_product}" Width="100" Height="100" Margin="0,0,10,0" />
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding name_product}" FontSize="16" FontWeight="Bold" />
-                            <TextBlock Text="{Binding price}" Foreground="Green" FontSize="14" />
+                            <TextBlock Text="{Binding name_product}" FontSize="16" FontWeight="Bold" TextWrapping="WrapWithOverflow"/>
+                            <TextBlock Text="{Binding name_category}" Foreground="Green" FontSize="14" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

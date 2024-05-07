@@ -22,9 +22,11 @@ namespace TatSprirtProm.Pages
     {
         private TatSpirtPromEntities _db = new TatSpirtPromEntities();
         private byte[] _image = null;
+        int _id;
         public EditStorage(int id)
         {
             InitializeComponent();
+            _id = id;
             Storage storage =  _db.Storage.Where(x => x.id_storage == id).FirstOrDefault();
             txtName.Text = storage.name_storage;
             txtArea.Text = storage.area.ToString();
@@ -38,12 +40,14 @@ namespace TatSprirtProm.Pages
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Storage storage = new Storage();
+            Storage storage =  _db.Storage.Where(x => x.id_storage == _id).FirstOrDefault();
             storage.address = txtAddress.Text;
             storage.name_storage = txtName.Text;
             storage.responsible_person = cbEmployee.SelectedIndex;
             storage.area = txtArea.Text;
             _db.SaveChanges();
+            MessageBox.Show("Склад изменен");
+            NavigationService.GoBack();
 
         }
 
@@ -52,7 +56,7 @@ namespace TatSprirtProm.Pages
             txtName.Text = string.Empty;
             txtAddress.Text = string.Empty;
             txtArea.Text = string.Empty;
-            cbEmployee.SelectedIndex = 0;
+            cbEmployee.SelectedIndex = -1;
 
         }
     }

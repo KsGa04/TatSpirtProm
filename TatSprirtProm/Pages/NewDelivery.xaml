@@ -45,10 +45,7 @@
             <ComboBox x:Name="cbWarehouse" Grid.Row="3" Grid.Column="1" Margin="0,10,10,10" />
 
             <Label Grid.Row="4" Grid.Column="0" Content="Количество:" Margin="0,10,10,10" />
-            <TextBlock x:Name="txtQuantity" Grid.Row="4" Grid.Column="1" Margin="0,10,10,10" />
-
-            <Label Grid.Row="5" Grid.Column="0" Content="Цена:" Margin="0,10,10,10" />
-            <TextBox x:Name="txtPrice" Grid.Row="5" Grid.Column="1" Margin="0,10,10,10" />
+            <TextBox x:Name="txtQuantity" Grid.Row="4" Grid.Column="1" Margin="0,10,10,10" />
 
             <Label Grid.Row="6" Grid.Column="0" Content="Комментарий:" Margin="0,10,10,10" />
             <TextBox x:Name="txtComment" Grid.Row="6" Grid.Column="1" Margin="0,10,10,10" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />

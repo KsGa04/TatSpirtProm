@@ -39,8 +39,16 @@ namespace TatSprirtProm.Pages
             Product product =  db.Product.Where(x => x.id_product == id).FirstOrDefault();
             product1 = product;
             _image = product.image_product;
-            MemoryStream ms = new MemoryStream(_image);
-            image.Source = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+            if (_image == null)
+            {
+                image.Source = null;
+            }
+            else
+            {
+                MemoryStream ms = new MemoryStream(_image);
+                image.Source = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+            }
+            
             name.Text = product.name_product;
             description.Text = product.description_product;
             amount.Text = product.amount.ToString();
